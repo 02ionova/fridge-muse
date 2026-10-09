@@ -64,6 +64,67 @@ class RecipeTests(unittest.TestCase):
             self.assertGreaterEqual(len(match['steps']), 3)
             self.assertTrue(all(not i['missing'] for i in match['ingredients']))
 
+    def test_water_is_hidden_in_live_and_offline_results(self):
+        fixture = json.loads(json.dumps(self.fixture))
+        fixture['recipes'][0]['ingredients'].append({'name': 'tap water', 'quantity': '1 litre', 'available_name': None})
+        for result in [app.validate_result(fixture, self.inputs), app.generate(self.inputs, demo=True)]:
+            self.assertTrue(all(i['name'] not in ('water', 'tap water') for r in result['recipes'] for i in r['ingredients']))
+        self.assertIn('water', ' '.join(app.generate(self.inputs, demo=True)['recipes'][0]['steps']))
+
+    def test_meal_and_dish_preferences_filter_offline(self):
+        cases = [
+            ('eggs,tomatoes,cheese,bread,mushrooms', 'breakfast', 'main dish'),
+            ('carrots,potatoes,onions', 'lunch', 'soup'),
+            ('apples,bananas,yogurt,flour,milk,eggs', 'dinner', 'dessert'),
+        ]
+        for ingredients, meal, dish in cases:
+            with self.subTest(meal=meal, dish=dish):
+                result = app.generate(app.request_input(ingredients, meal_type=meal, dish_type=dish), demo=True)
+                self.assertTrue(result['recipes'])
+                self.assertTrue(all(meal in r['meal_types'] and r['dish_type'] == dish for r in result['recipes']))
+
+    def test_every_meal_and_dish_option_has_offline_matches(self):
+        catalog = json.loads((app.ROOT / 'examples/recipes.json').read_text())['recipes']
+        names = list({i['name'] for r in catalog for i in r['ingredients']})
+        for meal in app.MEAL_TYPES:
+            with self.subTest(meal=meal):
+                result = app.generate(app.request_input(names, meal_type=meal), demo=True)
+                self.assertTrue(all(meal in r['meal_types'] for r in result['recipes']))
+        for dish in app.DISH_TYPES:
+            with self.subTest(dish=dish):
+                result = app.generate(app.request_input(names, dish_type=dish), demo=True)
+                self.assertTrue(all(r['dish_type'] == dish for r in result['recipes']))
+
+    def test_snack_appetizer_and_brunch_sandwich_combinations(self):
+        for meal, dish, ingredients in [
+            ('snack', 'appetizer', 'bread,tomatoes,basil,garlic,olive oil'),
+            ('brunch', 'sandwich', 'bread,cheese,tomatoes,butter,basil'),
+        ]:
+            with self.subTest(meal=meal, dish=dish):
+                result = app.generate(app.request_input(ingredients, meal_type=meal, dish_type=dish), demo=True)
+                self.assertTrue(result['recipes'])
+                self.assertTrue(all(meal in r['meal_types'] and dish == r['dish_type'] for r in result['recipes']))
+
+    def test_invalid_preferences_and_ai_mismatches_rejected(self):
+        for kwargs in [{'meal_type': 'midnight feast'}, {'dish_type': 'pizza'}, {'meal_type': []}]:
+            with self.assertRaises(app.RecipeError):
+                app.request_input('tomatoes', **kwargs)
+        for kwargs in [{'meal_type': 'breakfast'}, {'dish_type': 'dessert'}]:
+            with self.assertRaisesRegex(app.RecipeError, 'preference'):
+                app.validate_result(self.fixture, app.request_input('tomatoes,pasta,basil', **kwargs))
+
+    @patch.dict(os.environ, {'OPENAI_API_KEY': 'test-key'})
+    def test_ai_receives_preferences(self):
+        inputs = app.request_input('tomatoes,pasta,basil', meal_type='dinner', dish_type='main dish')
+        def opener(request, timeout):
+            payload = json.loads(request.data)
+            submitted = json.loads(payload['messages'][1]['content'])
+            self.assertEqual(submitted['meal_type'], 'dinner')
+            self.assertEqual(submitted['dish_type'], 'main dish')
+            return self.response()
+        result = app.generate(inputs, opener=opener)
+        self.assertEqual(len(result['recipes']), 3)
+
     def test_input_validation(self):
         for kwargs in ({'ingredients': ''}, {'ingredients': ['x'], 'servings': 0}, {'ingredients': ['x'], 'max_time': True}, {'ingredients': [123]}):
             with self.assertRaises(app.RecipeError): app.request_input(**kwargs)

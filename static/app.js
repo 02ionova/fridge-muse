@@ -1,10 +1,11 @@
 const $ = (id) => document.getElementById(id);
 let ingredients = ['tomatoes', 'pasta', 'basil'];
 const categories = [
+  {name:'The sweet shelf', subtitle:'Fruit & baking', icon:'🍎', items:[['apples','🍎'],['bananas','🍌'],['sugar','🍬'],['cinnamon','🤎']]},
   {name:'The garden shelf', subtitle:'Vegetables & herbs', icon:'🥬', items:[['tomatoes','🍅'],['carrots','🥕'],['potatoes','🥔'],['onions','🧅'],['mushrooms','🍄'],['bell peppers','🫑'],['zucchini','🥒'],['spinach','🥬'],['basil','🌿'],['garlic','🧄']]},
   {name:'The cool shelf', subtitle:'Dairy & eggs', icon:'🧀', items:[['eggs','🥚'],['milk','🥛'],['cheese','🧀'],['butter','🧈'],['yogurt','🥣'],['cream','🥛']]},
   {name:'The hearty shelf', subtitle:'Meat, fish & plant proteins', icon:'🐟', items:[['chicken','🍗'],['beef','🥩'],['salmon','🐟'],['tuna','🐟'],['tofu','◻️'],['chickpeas','🫘']]},
-  {name:'The pantry drawer', subtitle:'Grains & kitchen essentials', icon:'🍞', items:[['pasta','🍝'],['rice','🍚'],['bread','🍞'],['flour','🌾'],['olive oil','🫒'],['red wine vinegar','🍶'],['water','💧']]}
+  {name:'The pantry drawer', subtitle:'Grains & kitchen essentials', icon:'🍞', items:[['pasta','🍝'],['rice','🍚'],['bread','🍞'],['flour','🌾'],['olive oil','🫒'],['red wine vinegar','🍶']]}
 ];
 const emoji = name => categories.flatMap(c => c.items).find(item => item[0] === name)?.[1] || '✦';
 function toggleIngredient(name) {
@@ -79,7 +80,7 @@ $('recipe-form').onsubmit = async event => {
   $('generate').disabled = true; $('results').setAttribute('aria-busy', 'true');
   $('results').replaceChildren(); $('status').textContent = 'Looking for your next favourite meal…';
   try {
-    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, dietary:document.querySelector('input[name="dietary"]:checked').value, cuisine:$('cuisine').value, max_time:document.querySelector('input[name="max-time"]:checked').value ? Number(document.querySelector('input[name="max-time"]:checked').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
+    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, meal_type:document.querySelector('input[name="meal-type"]:checked').value, dish_type:document.querySelector('input[name="dish-type"]:checked').value, dietary:document.querySelector('input[name="dietary"]:checked').value, cuisine:$('cuisine').value, max_time:document.querySelector('input[name="max-time"]:checked').value ? Number(document.querySelector('input[name="max-time"]:checked').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
     const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Recipe request failed.');
     recipes(data); $('status').textContent = data.mode === 'demo' ? `${data.recipes.length} matching recipes from our ${data.catalog_size}-dish collection — no API needed.` : 'Three fresh possibilities. Pick one and make it yours.';
   } catch (error) {$('error').textContent = error.message; $('status').textContent = 'Adjust your ingredients or constraints and try again.';}

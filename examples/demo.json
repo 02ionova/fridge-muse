@@ -1,1 +1,126 @@
-{"recipes":[{"title":"Tomato & Basil Pasta","cook_time_minutes":20,"servings":2,"ingredients":[{"name":"pasta","quantity":"{g} g","available_name":null},{"name":"tomatoes","quantity":"{n} medium","available_name":null},{"name":"basil","quantity":"{n} sprigs","available_name":null},{"name":"olive oil","quantity":"{ml} ml","available_name":null},{"name":"water","quantity":"enough to cover pasta","available_name":null}],"steps":["Bring a pot of water to a boil. Add pasta and cook according to the package, usually 8–12 minutes.","Meanwhile, chop tomatoes and heat olive oil in a pan. Cook tomatoes for 6–8 minutes, stirring.","Drain pasta, reserving a little cooking water. Toss with tomatoes, adding cooking water to loosen the sauce.","Tear basil over the pasta and divide evenly between servings."]},{"title":"Warm Tomato Bruschetta","cook_time_minutes":15,"servings":2,"ingredients":[{"name":"bread","quantity":"{n} large slices","available_name":null},{"name":"tomatoes","quantity":"{n} medium","available_name":null},{"name":"basil","quantity":"{n} sprigs","available_name":null},{"name":"olive oil","quantity":"{ml} ml","available_name":null}],"steps":["Dice tomatoes and tear basil. Mix with half the olive oil.","Brush bread with the remaining oil and toast in a pan over medium heat for 2–3 minutes per side.","Top warm bread with the tomato mixture and divide evenly between servings."]},{"title":"Rustic Tomato & Bread Salad","cook_time_minutes":10,"servings":2,"ingredients":[{"name":"bread","quantity":"{n} large slices","available_name":null},{"name":"tomatoes","quantity":"{n} medium","available_name":null},{"name":"basil","quantity":"{n} sprigs","available_name":null},{"name":"olive oil","quantity":"{ml} ml","available_name":null},{"name":"red wine vinegar","quantity":"to taste","available_name":null}],"steps":["Cut bread into bite-sized pieces. Toast in a dry pan over medium heat for 3–4 minutes.","Chop tomatoes, keeping their juices. Combine with bread, torn basil, olive oil and a little vinegar.","Let stand for 3 minutes so the bread absorbs the dressing, then divide evenly between servings."]}]}
+{
+  "recipes": [
+    {
+      "title": "Tomato & Basil Pasta",
+      "cook_time_minutes": 20,
+      "servings": 2,
+      "ingredients": [
+        {
+          "name": "pasta",
+          "quantity": "{g} g",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "quantity": "{n} medium",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "quantity": "{n} sprigs",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "quantity": "{ml} ml",
+          "available_name": null
+        },
+        {
+          "name": "water",
+          "quantity": "enough to cover pasta",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Bring a pot of water to a boil. Add pasta and cook according to the package, usually 8\u201312 minutes.",
+        "Meanwhile, chop tomatoes and heat olive oil in a pan. Cook tomatoes for 6\u20138 minutes, stirring.",
+        "Drain pasta, reserving a little cooking water. Toss with tomatoes, adding cooking water to loosen the sauce.",
+        "Tear basil over the pasta and divide evenly between servings."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish"
+    },
+    {
+      "title": "Warm Tomato Bruschetta",
+      "cook_time_minutes": 15,
+      "servings": 2,
+      "ingredients": [
+        {
+          "name": "bread",
+          "quantity": "{n} large slices",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "quantity": "{n} medium",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "quantity": "{n} sprigs",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "quantity": "{ml} ml",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Dice tomatoes and tear basil. Mix with half the olive oil.",
+        "Brush bread with the remaining oil and toast in a pan over medium heat for 2\u20133 minutes per side.",
+        "Top warm bread with the tomato mixture and divide evenly between servings."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish"
+    },
+    {
+      "title": "Rustic Tomato & Bread Salad",
+      "cook_time_minutes": 10,
+      "servings": 2,
+      "ingredients": [
+        {
+          "name": "bread",
+          "quantity": "{n} large slices",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "quantity": "{n} medium",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "quantity": "{n} sprigs",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "quantity": "{ml} ml",
+          "available_name": null
+        },
+        {
+          "name": "red wine vinegar",
+          "quantity": "to taste",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Cut bread into bite-sized pieces. Toast in a dry pan over medium heat for 3\u20134 minutes.",
+        "Chop tomatoes, keeping their juices. Combine with bread, torn basil, olive oil and a little vinegar.",
+        "Let stand for 3 minutes so the bread absorbs the dressing, then divide evenly between servings."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish"
+    }
+  ]
+}

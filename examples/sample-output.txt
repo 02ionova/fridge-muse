@@ -6,9 +6,8 @@ Ingredients:
   [HAVE] 2 medium tomatoes
   [HAVE] 2 sprigs basil
   [MISSING] 20 ml olive oil
-  [MISSING] 1500 ml water
 Steps:
-  1. Boil the water and cook pasta according to package instructions, usually 8–12 minutes.
+  1. Boil the 1500 ml water and cook pasta according to package instructions, usually 8–12 minutes.
   2. Chop tomatoes. Heat olive oil in a pan and cook tomatoes for 6–8 minutes until saucy.
   3. Drain pasta, reserving a little cooking water, and toss with tomatoes. Add a spoonful of cooking water if needed.
   4. Tear basil over the pasta and divide between bowls.

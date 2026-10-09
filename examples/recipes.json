@@ -62,6 +62,15 @@
         "Add zucchini and peppers; cook for 8 minutes, stirring occasionally.",
         "Add tomatoes, cover and simmer for 15\u201320 minutes until all vegetables are tender. Stir occasionally, adding a splash of water if the pan becomes dry.",
         "Tear basil over the vegetables and serve warm."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish",
+        "side dish"
       ]
     },
     {
@@ -109,19 +118,21 @@
           "amount": 15,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 1500,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Bring the water to a boil and cook pasta according to its package. Reserve a cup of cooking water before draining.",
+        "Bring the 1500 ml water to a boil and cook pasta according to its package. Reserve a cup of cooking water before draining.",
         "Slice mushrooms and mince garlic. Heat oil in a large pan and fry mushrooms for 7\u20139 minutes until browned.",
         "Add garlic for 30 seconds, then stir in cream and spinach. Simmer for 3 minutes until the spinach wilts.",
         "Toss in the drained pasta. Add reserved cooking water a spoonful at a time until the sauce coats it, then serve."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -172,19 +183,21 @@
           "amount": 20,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 400,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Rinse rice and cook with the water following package instructions. Spread on a plate to let steam escape.",
+        "Rinse rice and cook with the 400 ml water following package instructions. Spread on a plate to let steam escape.",
         "Finely dice carrots, pepper and onion; mince garlic.",
         "Heat oil in a wide pan. Cook onion and carrot for 5 minutes, add pepper and cook for 4 minutes, then add garlic for 30 seconds.",
         "Add rice and fry for 3\u20134 minutes, stirring until hot throughout. Serve immediately."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -234,6 +247,16 @@
         "Melt butter in a nonstick pan over medium heat. Cook tomato for 2 minutes.",
         "Pour in eggs and gently draw the edges toward the middle until mostly set, about 3 minutes.",
         "Scatter cheese and basil over half, fold the omelette and cook on low for another 2 minutes until the egg is fully set. Divide and serve."
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "brunch"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -289,6 +312,14 @@
         "Heat half the oil in a large pan over medium-high heat. Brown chicken for 6\u20138 minutes, turning regularly. Transfer to a clean plate.",
         "Add remaining oil and vegetables to the pan; cook for 7 minutes. Stir in garlic for 30 seconds.",
         "Return chicken and add tomatoes. Cover and simmer for 8\u201310 minutes until the vegetables are tender and chicken reaches 74\u00b0C in its thickest pieces."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -330,19 +361,21 @@
           "amount": 2,
           "unit": "cloves",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 1000,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Cut potatoes into 2 cm chunks. Cover with water in a saucepan, bring to a boil and simmer for 15 minutes until tender; drain.",
+        "Cut potatoes into 2 cm chunks. Cover with 1000 ml water in a saucepan, bring to a boil and simmer for 15 minutes until tender; drain.",
         "Pat salmon dry. Melt half the butter in a pan over medium heat and cook salmon for 4\u20135 minutes per side, depending on thickness, until its centre reaches 63\u00b0C. Transfer to plates.",
         "Add remaining butter and minced garlic to the pan for 30 seconds, then wilt spinach for 2 minutes.",
         "Toss potatoes in the pan juices and serve with spinach and salmon."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -393,12 +426,6 @@
           "amount": 20,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 150,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
@@ -406,6 +433,14 @@
         "Heat oil in a saucepan and cook onion for 5 minutes. Add garlic for 30 seconds.",
         "Add tomatoes, chickpeas and water. Simmer for 12 minutes, stirring and crushing some chickpeas to thicken the sauce.",
         "Stir in spinach and cook for 2\u20133 minutes until wilted and the stew is piping hot."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -456,19 +491,21 @@
           "amount": 25,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 400,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Cook rice with water according to its package. Pat tofu dry and cut into cubes. Slice mushrooms and cut carrot into thin strips.",
+        "Cook rice with 400 ml water according to its package. Pat tofu dry and cut into cubes. Slice mushrooms and cut carrot into thin strips.",
         "Heat half the oil in a pan and fry tofu for 8\u201310 minutes, turning until golden. Transfer to a plate.",
         "Add remaining oil, mushrooms and carrot; cook for 7 minutes. Add minced garlic for 30 seconds.",
         "Return tofu and stir until hot. Divide rice into bowls and top with tofu and vegetables."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -513,19 +550,22 @@
           "amount": 25,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 800,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Cut potatoes into 1 cm cubes. Boil in the water for 7 minutes, then drain and let steam dry.",
+        "Cut potatoes into 1 cm cubes. Boil in the 800 ml water for 7 minutes, then drain and let steam dry.",
         "Dice onion, slice mushrooms and mince garlic. Heat oil in a wide pan over medium-high heat.",
         "Fry potatoes for 10 minutes, turning occasionally until golden. Add onion and mushrooms; cook for 7\u20138 minutes.",
         "Stir in garlic for the final minute. Serve once potatoes are tender in the middle."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish",
+        "side dish"
       ]
     },
     {
@@ -573,6 +613,18 @@
         "Slice tomatoes and grate cheese. Heat oil in a pan and wilt spinach for 2 minutes.",
         "Toast bread on both sides in a dry pan, working in batches if needed.",
         "Top with spinach, tomato and cheese. Return to the pan over low heat and cover for 3\u20134 minutes until cheese melts. Serve hot."
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "brunch",
+        "snack"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish",
+        "appetizer"
       ]
     },
     {
@@ -622,6 +674,16 @@
         "Cut bread into bite-sized pieces and toast in a dry pan for 3\u20134 minutes.",
         "Dice tomatoes, keeping their juices. Toss with torn basil, olive oil and vinegar.",
         "Add bread, toss well and leave for 3 minutes to absorb the dressing before serving."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "salad",
+      "dish_types": [
+        "salad",
+        "side dish"
       ]
     },
     {
@@ -659,19 +721,21 @@
           "amount": 20,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 1500,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Boil the water and cook pasta according to package instructions, usually 8\u201312 minutes.",
+        "Boil the 1500 ml water and cook pasta according to package instructions, usually 8\u201312 minutes.",
         "Chop tomatoes. Heat olive oil in a pan and cook tomatoes for 6\u20138 minutes until saucy.",
         "Drain pasta, reserving a little cooking water, and toss with tomatoes. Add a spoonful of cooking water if needed.",
         "Tear basil over the pasta and divide between bowls."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -713,19 +777,21 @@
           "amount": 15,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 1500,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Boil the water and cook pasta following the package. Reserve some cooking water before draining.",
+        "Boil the 1500 ml water and cook pasta following the package. Reserve some cooking water before draining.",
         "Mince garlic and dice tomatoes. Warm oil in a pan and cook garlic for 30 seconds.",
         "Add tomatoes and cook for 7 minutes. Flake in drained canned tuna and heat for 2 minutes.",
         "Toss in pasta with a little cooking water to loosen the sauce. Serve hot."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -774,19 +840,21 @@
           "amount": 15,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 400,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
-        "Cook rice with water according to package instructions. Dice onion and tomatoes and slice mushrooms.",
+        "Cook rice with 400 ml water according to package instructions. Dice onion and tomatoes and slice mushrooms.",
         "Heat oil in a wide pan. Cook onion for 4 minutes, then add minced beef and break it into small pieces.",
         "Cook for 7\u20139 minutes, stirring, until beef reaches 71\u00b0C. Add mushrooms and tomatoes and simmer for 8 minutes.",
         "Fold in cooked rice, heat through for 2 minutes and divide into bowls."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish"
       ]
     },
     {
@@ -825,12 +893,6 @@
           "amount": 15,
           "unit": "ml",
           "available_name": null
-        },
-        {
-          "name": "water",
-          "amount": 700,
-          "unit": "ml",
-          "available_name": null
         }
       ],
       "steps": [
@@ -838,6 +900,14 @@
         "Heat oil in a saucepan and soften onion for 4 minutes. Add carrots and potatoes and stir for 2 minutes.",
         "Add water, bring to a boil and simmer for 18\u201320 minutes until vegetables are very tender.",
         "Mash for a chunky soup, or carefully blend with an immersion blender off the heat. Reheat gently and serve."
+      ],
+      "meal_types": [
+        "lunch",
+        "dinner"
+      ],
+      "dish_type": "soup",
+      "dish_types": [
+        "soup"
       ]
     },
     {
@@ -885,6 +955,419 @@
         "Toast bread in a dry pan and set aside. Slice mushrooms and mince garlic.",
         "Melt two-thirds of the butter in the pan. Cook mushrooms for 6\u20137 minutes until browned and add garlic for 30 seconds. Spoon onto toast.",
         "Melt remaining butter and fry eggs over medium-low heat for 4\u20135 minutes until whites and yolks are set. Place on the mushroom toast and serve."
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "brunch",
+        "snack"
+      ],
+      "dish_type": "main dish",
+      "dish_types": [
+        "main dish",
+        "appetizer"
+      ]
+    },
+    {
+      "title": "Warm Cinnamon Apples",
+      "cook_time_minutes": 15,
+      "servings": 2,
+      "cuisine": "French",
+      "kind": "fruit",
+      "dietary": [
+        "vegetarian",
+        "vegan",
+        "gluten-free",
+        "dairy-free"
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "dessert",
+      "ingredients": [
+        {
+          "name": "apples",
+          "amount": 2,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "sugar",
+          "amount": 10,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "cinnamon",
+          "amount": 1,
+          "unit": "tsp",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Core apples and cut into thin slices.",
+        "Put apples in a pan with 30 ml water, sugar and cinnamon. Cover and cook over medium-low heat for 8 minutes, stirring occasionally.",
+        "Uncover and cook for 2\u20133 minutes until tender and lightly glazed. Serve warm."
+      ],
+      "dish_types": [
+        "dessert"
+      ]
+    },
+    {
+      "title": "Banana & Yogurt Dessert Cups",
+      "cook_time_minutes": 10,
+      "servings": 2,
+      "cuisine": "French",
+      "kind": "fruit",
+      "dietary": [
+        "vegetarian",
+        "gluten-free"
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "dessert",
+      "ingredients": [
+        {
+          "name": "bananas",
+          "amount": 2,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "yogurt",
+          "amount": 250,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "sugar",
+          "amount": 10,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "cinnamon",
+          "amount": 0.5,
+          "unit": "tsp",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Slice the bananas, reserving a few slices for the top.",
+        "Mix yogurt with sugar and cinnamon.",
+        "Layer bananas and yogurt in two glasses, finish with reserved slices and serve immediately."
+      ],
+      "dish_types": [
+        "dessert"
+      ]
+    },
+    {
+      "title": "French Cr\u00eapes with Warm Apples",
+      "cook_time_minutes": 30,
+      "servings": 2,
+      "cuisine": "French",
+      "kind": "pancakes",
+      "dietary": [
+        "vegetarian"
+      ],
+      "meal_types": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "brunch"
+      ],
+      "dish_type": "dessert",
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 100,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "eggs",
+          "amount": 1,
+          "unit": "large",
+          "available_name": null
+        },
+        {
+          "name": "milk",
+          "amount": 200,
+          "unit": "ml",
+          "available_name": null
+        },
+        {
+          "name": "butter",
+          "amount": 20,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "apples",
+          "amount": 2,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "sugar",
+          "amount": 20,
+          "unit": "g",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Whisk flour, egg and milk until smooth; leave to rest while preparing apples.",
+        "Core and thinly slice apples. Melt half the butter in a pan, add apples and sugar and cook for 8\u201310 minutes until tender.",
+        "Heat a nonstick pan over medium heat and grease lightly with remaining butter. Pour in a thin layer of batter, tilt to spread and cook for 1\u20132 minutes per side until set and lightly golden. Repeat for the remaining batter.",
+        "Fill cr\u00eapes with warm apples and fold before serving."
+      ],
+      "dish_types": [
+        "dessert"
+      ]
+    },
+    {
+      "title": "Chickpea & Tomato Garden Salad",
+      "cook_time_minutes": 10,
+      "servings": 2,
+      "cuisine": "Mediterranean",
+      "kind": "salad",
+      "dietary": [
+        "vegetarian",
+        "vegan",
+        "gluten-free",
+        "dairy-free"
+      ],
+      "meal_types": [
+        "brunch",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "salad",
+      "dish_types": [
+        "salad",
+        "side dish"
+      ],
+      "ingredients": [
+        {
+          "name": "chickpeas",
+          "amount": 300,
+          "unit": "g cooked, drained",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "amount": 2,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "bell peppers",
+          "amount": 1,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "amount": 20,
+          "unit": "ml",
+          "available_name": null
+        },
+        {
+          "name": "red wine vinegar",
+          "amount": 10,
+          "unit": "ml",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "amount": 2,
+          "unit": "sprigs",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Drain and rinse canned chickpeas or use already cooked chickpeas.",
+        "Dice tomatoes and pepper and tear basil into small pieces.",
+        "Toss chickpeas and vegetables with oil and vinegar. Season with salt and pepper to taste and serve."
+      ]
+    },
+    {
+      "title": "Warm Tomato & Basil Bruschetta",
+      "cook_time_minutes": 15,
+      "servings": 2,
+      "cuisine": "Mediterranean",
+      "kind": "toast",
+      "dietary": [
+        "vegetarian",
+        "vegan",
+        "dairy-free"
+      ],
+      "meal_types": [
+        "brunch",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "appetizer",
+      "dish_types": [
+        "appetizer"
+      ],
+      "ingredients": [
+        {
+          "name": "bread",
+          "amount": 4,
+          "unit": "small slices",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "amount": 2,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "garlic",
+          "amount": 1,
+          "unit": "clove",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "amount": 2,
+          "unit": "sprigs",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "amount": 15,
+          "unit": "ml",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Dice tomatoes and tear basil. Toss with half the olive oil and a pinch of salt.",
+        "Toast bread in a dry pan for 2\u20133 minutes per side until crisp.",
+        "Rub each toast lightly with the cut garlic clove, top with tomatoes and basil, and drizzle with remaining oil."
+      ]
+    },
+    {
+      "title": "Garlic Spinach & Mushrooms",
+      "cook_time_minutes": 15,
+      "servings": 2,
+      "cuisine": "Mediterranean",
+      "kind": "vegetables",
+      "dietary": [
+        "vegetarian",
+        "vegan",
+        "gluten-free",
+        "dairy-free"
+      ],
+      "meal_types": [
+        "brunch",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "side dish",
+      "dish_types": [
+        "side dish"
+      ],
+      "ingredients": [
+        {
+          "name": "spinach",
+          "amount": 200,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "mushrooms",
+          "amount": 250,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "garlic",
+          "amount": 2,
+          "unit": "cloves",
+          "available_name": null
+        },
+        {
+          "name": "olive oil",
+          "amount": 20,
+          "unit": "ml",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Slice mushrooms and mince garlic. Wash and drain spinach.",
+        "Heat olive oil in a wide pan over medium-high heat. Fry mushrooms for 7\u20139 minutes until golden.",
+        "Add garlic and cook for 30 seconds, then stir in spinach for 2 minutes until wilted. Season with salt and pepper and serve as a side."
+      ]
+    },
+    {
+      "title": "Melty Cheese & Tomato Sandwich",
+      "cook_time_minutes": 15,
+      "servings": 2,
+      "cuisine": "Mediterranean",
+      "kind": "sandwich",
+      "dietary": [
+        "vegetarian"
+      ],
+      "meal_types": [
+        "brunch",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "dish_type": "sandwich",
+      "dish_types": [
+        "sandwich"
+      ],
+      "ingredients": [
+        {
+          "name": "bread",
+          "amount": 4,
+          "unit": "slices",
+          "available_name": null
+        },
+        {
+          "name": "cheese",
+          "amount": 100,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "tomatoes",
+          "amount": 1,
+          "unit": "medium",
+          "available_name": null
+        },
+        {
+          "name": "butter",
+          "amount": 15,
+          "unit": "g",
+          "available_name": null
+        },
+        {
+          "name": "basil",
+          "amount": 2,
+          "unit": "sprigs",
+          "available_name": null
+        }
+      ],
+      "steps": [
+        "Thinly slice tomato and cheese. Divide cheese, tomato and basil between two sandwiches.",
+        "Spread butter thinly on the outside of each sandwich. Heat a pan over medium-low heat.",
+        "Cook sandwiches for 3\u20134 minutes per side, pressing gently, until golden and the cheese is melted. Slice and serve."
       ]
     }
   ]

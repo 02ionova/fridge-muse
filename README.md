@@ -33,7 +33,7 @@ python3 app.py --web
 # Open http://127.0.0.1:8000
 ```
 
-A fridge-inspired ingredient picker offers one-tap choices on categorized shelves for vegetables and herbs, dairy and eggs, proteins, and pantry essentials. Selected ingredients are highlighted; custom ingredients and a clear-all control are also available. Dietary pills, time tiles, and a serving stepper sit beside expandable recipe cards. The cream, blue, and terracotta design evokes an animated Parisian kitchen. Missing items are labelled in orange, available items in green. It includes responsive layouts, keyboard focus states, loading feedback and readable errors. The API key stays in the Python process and never reaches the browser.
+A fridge-inspired ingredient picker offers one-tap choices on categorized shelves for fruit and baking, vegetables and herbs, dairy and eggs, proteins, and pantry essentials. Selected ingredients are highlighted; custom ingredients and a clear-all control are also available. Meal and dish preferences, dietary pills, time tiles, and a serving stepper sit beside expandable recipe cards. The blue-gray, cream, and carrot-orange palette echoes the mouse banner, with Fraunces headings and Manrope body text. Missing items are labelled in orange, available items in green. It includes responsive layouts, keyboard focus states, loading feedback and readable errors. The API key stays in the Python process and never reaches the browser.
 
 For a key-free preview:
 
@@ -41,7 +41,7 @@ For a key-free preview:
 python3 app.py --web --demo
 ```
 
-Offline mode selects up to six suggestions from a curated collection of 16 dishes, ranked by your selected ingredients, missing main ingredients, and dish variety. It supports vegetarian, vegan, gluten-free, and dairy-free filters; French, Italian, Asian, and Mediterranean cuisines; and the selected time budget. Portions scale to your serving count. No match produces a clear message instead of ignoring your preferences. Missing pantry items are still listed, except salt and pepper, which are always available. This is recipe matching, **not AI generation**. Live mode supports arbitrary ingredient lists and dietary/cuisine text.
+Offline mode selects up to six suggestions from a curated collection of 23 dishes, ranked by your selected ingredients, missing main ingredients, and dish variety. It supports vegetarian, vegan, gluten-free, and dairy-free filters; French, Italian, Asian, and Mediterranean cuisines; the selected time budget, meal occasion (breakfast/brunch/lunch/dinner/snack), and dish type (soup/salad/main dish/appetizer/side dish/sandwich/dessert). Portions scale to your serving count. No match produces a clear message instead of ignoring your preferences. Missing pantry items are still listed, except salt and pepper, which are always available. This is recipe matching, **not AI generation**. Live mode supports arbitrary ingredient lists and dietary/cuisine text.
 
 ## CLI options
 
@@ -49,6 +49,8 @@ Offline mode selects up to six suggestions from a curated collection of 16 dishe
 --ingredients   Comma-separated ingredient names (required except in web mode)
 --dietary       Dietary restriction, e.g. vegetarian, vegan, gluten-free
 --cuisine       Cuisine preference, e.g. Italian
+--meal-type     breakfast, brunch, lunch, dinner, or snack (optional)
+--dish-type     soup, salad, "main dish", appetizer, "side dish", sandwich, or dessert
 --max-time      Maximum total preparation + cooking minutes (1–600)
 --servings      Required serving count (1–20; defaults to 2 when omitted)
 --json          Print structured JSON instead of readable text
@@ -57,7 +59,7 @@ Offline mode selects up to six suggestions from a curated collection of 16 dishe
 --port          Local web port (default 8000)
 ```
 
-Any subset of constraints can be supplied. Enter ingredient names rather than stock quantities: the app checks whether an ingredient is on hand, not whether you have enough of it. Salt and pepper are assumed available by default. Other pantry staples are marked missing unless included in the input.
+Any subset of constraints can be supplied. Enter ingredient names rather than stock quantities: the app checks whether an ingredient is on hand, not whether you have enough of it. Water is omitted from ingredient lists; required amounts appear in cooking steps. Salt and pepper are assumed available by default. Other pantry staples are marked missing unless included in the input.
 
 ## Sample invocation and actual output
 
@@ -76,9 +78,8 @@ Ingredients:
   [HAVE] 2 medium tomatoes
   [HAVE] 2 sprigs basil
   [MISSING] 20 ml olive oil
-  [MISSING] 1500 ml water
 Steps:
-  1. Boil the water and cook pasta according to package instructions, usually 8–12 minutes.
+  1. Boil the 1500 ml water and cook pasta according to package instructions, usually 8–12 minutes.
   2. Chop tomatoes. Heat olive oil in a pan and cook tomatoes for 6–8 minutes until saucy.
   3. Drain pasta, reserving a little cooking water, and toss with tomatoes. Add a spoonful of cooking water if needed.
   4. Tear basil over the pasta and divide between bowls.
