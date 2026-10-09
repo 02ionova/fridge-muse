@@ -1,17 +1,47 @@
 const $ = (id) => document.getElementById(id);
 let ingredients = ['tomatoes', 'pasta', 'basil'];
-const emoji = (name) => ({tomatoes:'🍅', pasta:'🍝', basil:'🌿', eggs:'🥚', milk:'🥛', cheese:'🧀', bread:'🍞', rice:'🍚', chicken:'🍗', carrots:'🥕', potatoes:'🥔', mushrooms:'🍄'}[name] || '✳');
+const categories = [
+  {name:'The garden shelf', subtitle:'Vegetables & herbs', icon:'🥬', items:[['tomatoes','🍅'],['carrots','🥕'],['potatoes','🥔'],['onions','🧅'],['mushrooms','🍄'],['bell peppers','🫑'],['zucchini','🥒'],['spinach','🥬'],['basil','🌿'],['garlic','🧄']]},
+  {name:'The cool shelf', subtitle:'Dairy & eggs', icon:'🧀', items:[['eggs','🥚'],['milk','🥛'],['cheese','🧀'],['butter','🧈'],['yogurt','🥣'],['cream','🥛']]},
+  {name:'The hearty shelf', subtitle:'Meat, fish & plant proteins', icon:'🐟', items:[['chicken','🍗'],['beef','🥩'],['salmon','🐟'],['tuna','🐟'],['tofu','◻️'],['chickpeas','🫘']]},
+  {name:'The pantry drawer', subtitle:'Grains & kitchen essentials', icon:'🍞', items:[['pasta','🍝'],['rice','🍚'],['bread','🍞'],['flour','🌾'],['olive oil','🫒'],['red wine vinegar','🍶'],['water','💧']]}
+];
+const emoji = name => categories.flatMap(c => c.items).find(item => item[0] === name)?.[1] || '✦';
+function toggleIngredient(name) {
+  if (ingredients.includes(name)) ingredients = ingredients.filter(x => x !== name);
+  else {
+    if (ingredients.length >= 50) {$('error').textContent = 'You can select up to 50 ingredients.'; return;}
+    ingredients.push(name);
+  }
+  $('error').textContent = ''; shelves();
+}
 function shelves() {
+  const focused = document.activeElement?.dataset.ingredient;
   $('shelves').replaceChildren();
-  ingredients.forEach(name => {
-    const button = document.createElement('button');
-    button.className = 'ingredient'; button.type = 'button';
-    button.textContent = `${emoji(name)} ${name} ×`;
-    button.setAttribute('aria-label', `Remove ${name}`);
-    button.onclick = () => {ingredients = ingredients.filter(x => x !== name); shelves();};
-    $('shelves').append(button);
+  const known = categories.flatMap(c => c.items.map(i => i[0]));
+  const custom = ingredients.filter(name => !known.includes(name));
+  const groups = [...categories, ...(custom.length ? [{name:'Your little extras',subtitle:'Added by you',icon:'✦',items:custom.map(name => [name,emoji(name)])}] : [])];
+  groups.forEach(category => {
+    const shelf = element('section', '', 'shelf');
+    const heading = element('div', '', 'shelf-heading');
+    heading.append(element('span', category.icon, 'shelf-icon'), element('h3', category.name), element('span', category.subtitle, 'shelf-subtitle'));
+    const options = element('div', '', 'ingredient-options');
+    category.items.forEach(([name, icon]) => {
+      const selected = ingredients.includes(name);
+      const button = element('button', '', `ingredient${selected ? ' selected' : ''}`);
+      button.type = 'button'; button.dataset.ingredient = name;
+      button.setAttribute('aria-pressed', String(selected));
+      button.append(element('span', icon, 'food-icon'), element('span', name), element('span', selected ? '✓' : '+', 'selection-mark'));
+      button.onclick = () => toggleIngredient(name); options.append(button);
+    });
+    shelf.append(heading,options); $('shelves').append(shelf);
   });
-  $('count').textContent = `${ingredients.length} ingredients`;
+  $('count').textContent = `${ingredients.length} selected`;
+  if (focused) [...$('shelves').querySelectorAll('button')].find(b => b.dataset.ingredient === focused)?.focus();
+}
+$('clear').onclick = () => {ingredients = []; shelves();};
+for (const [id, delta] of [['less',-1],['more',1]]) {
+  $(id).onclick = () => {$('servings').value = Math.max(1,Math.min(20,(Number($('servings').value) || 2) + delta));};
 }
 $('add-form').onsubmit = event => {
   event.preventDefault();
@@ -36,7 +66,7 @@ function recipes(data) {
     body.append(element('h4', 'The ingredients'));
     const list = document.createElement('ul');
     recipe.ingredients.forEach(item => {
-      const li = document.createElement('li'); li.append(element('span', item.missing ? 'MISSING' : 'IN FRIDGE', `item-state${item.missing ? ' missing' : ''}`), document.createTextNode(`${item.quantity} ${item.name}`)); list.append(li);
+      const li = document.createElement('li'); li.append(element('span', item.missing ? 'MISSING' : item.default_available ? 'PANTRY' : 'IN FRIDGE', `item-state${item.missing ? ' missing' : ''}`), document.createTextNode(`${item.quantity} ${item.name}`)); list.append(li);
     });
     body.append(list, element('h4', 'Make it happen'));
     const steps = document.createElement('ol'); recipe.steps.forEach(step => steps.append(element('li', step))); body.append(steps);
@@ -49,11 +79,11 @@ $('recipe-form').onsubmit = async event => {
   $('generate').disabled = true; $('results').setAttribute('aria-busy', 'true');
   $('results').replaceChildren(); $('status').textContent = 'Looking for your next favourite meal…';
   try {
-    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, dietary:$('dietary').value, cuisine:$('cuisine').value, max_time:$('max-time').value ? Number($('max-time').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
+    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, dietary:document.querySelector('input[name="dietary"]:checked').value, cuisine:$('cuisine').value, max_time:document.querySelector('input[name="max-time"]:checked').value ? Number(document.querySelector('input[name="max-time"]:checked').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
     const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Recipe request failed.');
-    recipes(data); $('status').textContent = data.mode === 'demo' ? 'Three fixed demo recipes — no API was called.' : 'Three fresh possibilities. Pick one and make it yours.';
+    recipes(data); $('status').textContent = data.mode === 'demo' ? `${data.recipes.length} matching recipes from our ${data.catalog_size}-dish collection — no API needed.` : 'Three fresh possibilities. Pick one and make it yours.';
   } catch (error) {$('error').textContent = error.message; $('status').textContent = 'Adjust your ingredients or constraints and try again.';}
   finally {$('generate').disabled = false; $('results').removeAttribute('aria-busy');}
 };
-fetch('/api/config').then(r => r.json()).then(data => {$('mode').textContent = data.mode === 'demo' ? 'OFFLINE DEMO' : 'AI KITCHEN';}).catch(() => {$('mode').textContent = 'SERVER UNAVAILABLE';});
+fetch('/api/config').then(r => r.json()).then(data => {$('mode').textContent = data.mode === 'demo' ? 'OFFLINE KITCHEN' : 'AI KITCHEN'; $('demo-note').hidden = data.mode !== 'demo';}).catch(() => {$('mode').textContent = 'SERVER UNAVAILABLE';});
 shelves();

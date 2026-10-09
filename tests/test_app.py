@@ -18,17 +18,51 @@ class RecipeTests(unittest.TestCase):
     def response(self):
         return io.BytesIO(json.dumps({'choices': [{'message': {'content': json.dumps(self.fixture)}}]}).encode())
 
-    def test_demo_has_three_complete_recipes_and_missing_items(self):
+    def test_offline_matches_and_marks_missing_items(self):
         result = app.generate(self.inputs, demo=True)
-        self.assertEqual(len(result['recipes']), 3)
-        self.assertFalse(result['recipes'][0]['ingredients'][0]['missing'])
-        self.assertTrue(result['recipes'][0]['ingredients'][3]['missing'])
+        self.assertGreaterEqual(len(result['recipes']), 3)
+        self.assertLessEqual(len(result['recipes']), 6)
+        self.assertEqual(result['recipes'][0]['title'], 'Tomato & Basil Pasta')
+        for recipe in result['recipes']:
+            for item in recipe['ingredients']:
+                self.assertEqual(item['missing'], item['name'] not in self.inputs['ingredients'])
         self.assertIn('[MISSING]', app.render_text(result))
 
     def test_demo_scales_servings(self):
         result = app.generate(app.request_input('pasta', servings=4), demo=True)
-        self.assertEqual(result['recipes'][0]['ingredients'][0]['quantity'], '400 g')
-        self.assertEqual(result['recipes'][0]['servings'], 4)
+        pasta = next(r for r in result['recipes'] if r['title'] == 'Tomato & Basil Pasta')
+        self.assertEqual(pasta['ingredients'][0]['quantity'], '400 g')
+        self.assertTrue(all(r['servings'] == 4 for r in result['recipes']))
+
+    def test_offline_changes_with_fridge_contents(self):
+        result = app.generate(app.request_input('salmon,potatoes,spinach,butter,garlic'), demo=True)
+        self.assertEqual(result['recipes'][0]['title'], 'Salmon with Buttery Potatoes & Spinach')
+        self.assertNotEqual(result['recipes'][0]['title'], app.generate(self.inputs, demo=True)['recipes'][0]['title'])
+
+    def test_offline_respects_diet_cuisine_and_time(self):
+        inputs = app.request_input('zucchini,tomatoes,carrots,potatoes,onions,olive oil', dietary='vegan', cuisine='fReNcH', max_time=30)
+        result = app.generate(inputs, demo=True)
+        self.assertTrue(result['recipes'])
+        for recipe in result['recipes']:
+            self.assertLessEqual(recipe['cook_time_minutes'], 30)
+            self.assertFalse({'eggs','cheese','milk','butter','cream','chicken','salmon','beef','tuna'} & {i['name'] for i in recipe['ingredients']})
+
+    def test_rich_fridge_offers_six_different_dishes(self):
+        catalog = json.loads((app.ROOT / 'examples/recipes.json').read_text())['recipes']
+        names = list({item['name'] for r in catalog for item in r['ingredients']})
+        result = app.generate(app.request_input(names), demo=True)
+        self.assertEqual(len(result['recipes']), 6)
+        self.assertEqual(len({r['title'] for r in result['recipes']}), 6)
+        self.assertTrue(all(not i['missing'] for r in result['recipes'] for i in r['ingredients']))
+
+    def test_entire_catalog_has_valid_recipes(self):
+        catalog = json.loads((app.ROOT / 'examples/recipes.json').read_text())['recipes']
+        for recipe in catalog:
+            inputs = app.request_input([i['name'] for i in recipe['ingredients']], servings=3)
+            result = app.generate(inputs, demo=True)
+            match = next(r for r in result['recipes'] if r['title'] == recipe['title'])
+            self.assertGreaterEqual(len(match['steps']), 3)
+            self.assertTrue(all(not i['missing'] for i in match['ingredients']))
 
     def test_input_validation(self):
         for kwargs in ({'ingredients': ''}, {'ingredients': ['x'], 'servings': 0}, {'ingredients': ['x'], 'max_time': True}, {'ingredients': [123]}):
@@ -80,12 +114,24 @@ class RecipeTests(unittest.TestCase):
         with self.assertRaisesRegex(app.RecipeError, 'time budget'):
             app.validate_result(self.fixture, self.inputs)
 
+    def test_salt_and_pepper_are_available_without_selection(self):
+        for name, match in [('salt', None), ('black pepper', None), ('sea salt', 'salt'), ('ground black pepper', 'pepper')]:
+            with self.subTest(name=name, match=match):
+                fixture = json.loads(json.dumps(self.fixture))
+                fixture['recipes'][0]['ingredients'].append({'name': name, 'quantity': 'to taste', 'available_name': match})
+                result = app.validate_result(fixture, self.inputs)
+                seasoning = result['recipes'][0]['ingredients'][-1]
+                self.assertFalse(seasoning['missing'])
+                self.assertTrue(seasoning['default_available'])
+                self.assertNotIn(name, self.inputs['ingredients'])
+        self.assertTrue(app.validate_result(self.fixture, self.inputs)['recipes'][0]['ingredients'][3]['missing'])
+
     def test_unknown_fridge_match_rejected(self):
         self.fixture['recipes'][0]['ingredients'][0]['available_name'] = 'unlisted ingredient'
         with self.assertRaises(app.RecipeError): app.validate_result(self.fixture, self.inputs)
 
     def test_unsupported_demo_constraint_is_explicit(self):
-        with self.assertRaisesRegex(app.RecipeError, 'Demo supports'):
-            app.generate(app.request_input('rice', dietary='vegan'), demo=True)
+        with self.assertRaisesRegex(app.RecipeError, 'No matching offline'):
+            app.generate(app.request_input('rice', cuisine='Martian'), demo=True)
 
 if __name__ == '__main__': unittest.main()
