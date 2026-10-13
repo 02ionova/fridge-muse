@@ -3,8 +3,7 @@
 **A little fridge. A lot of possibility.** A university recipe-planning project with a Python CLI and a Parisian kitchen-inspired fridge interface. Give it ingredients and optional constraints; receive up to six matched offline recipes or three AI-generated suggestions.
 
 
-https://github.com/user-attachments/assets/d078a6c9-6934-4595-825c-0fd8e97eb3ec
-
+https://github.com/user-attachments/assets/fa914076-312f-4b36-9cc6-0eafb187adf6
 
 
 
