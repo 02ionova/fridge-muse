@@ -33,7 +33,7 @@ python3 app.py --web
 # Open http://127.0.0.1:8000
 ```
 
-A fridge-inspired ingredient picker offers one-tap choices on categorized shelves for fruit and baking, vegetables and herbs, dairy and eggs, proteins, and pantry essentials. Selected ingredients are highlighted; custom ingredients and a clear-all control are also available. Meal and dish preferences, dietary pills, time tiles, and a serving stepper sit beside expandable recipe cards. The blue-gray, cream, and carrot-orange palette echoes the mouse banner, with Fraunces headings and Manrope body text. Missing items are labelled in orange, available items in green. It includes responsive layouts, keyboard focus states, loading feedback and readable errors. The API key stays in the Python process and never reaches the browser.
+A fridge-inspired ingredient picker offers one-tap choices on categorized shelves for fruit and baking, vegetables and herbs, dairy and eggs, proteins, and pantry essentials. Selected ingredients are highlighted; custom ingredients and a clear-all control are also available. Multiple-choice meal and dish preferences, dietary pills, time tiles, and a serving stepper sit beside expandable recipe cards. The blue-gray, cream, and carrot-orange palette echoes the mouse banner, with Fraunces headings and Manrope body text. Missing items are labelled in orange, available items in green. It includes responsive layouts, keyboard focus states, loading feedback and readable errors. The API key stays in the Python process and never reaches the browser.
 
 For a key-free preview:
 
@@ -41,16 +41,16 @@ For a key-free preview:
 python3 app.py --web --demo
 ```
 
-Offline mode selects up to six suggestions from a curated collection of 23 dishes, ranked by your selected ingredients, missing main ingredients, and dish variety. It supports vegetarian, vegan, gluten-free, and dairy-free filters; French, Italian, Asian, and Mediterranean cuisines; the selected time budget, meal occasion (breakfast/brunch/lunch/dinner/snack), and dish type (soup/salad/main dish/appetizer/side dish/sandwich/dessert). Portions scale to your serving count. No match produces a clear message instead of ignoring your preferences. Missing pantry items are still listed, except salt and pepper, which are always available. This is recipe matching, **not AI generation**. Live mode supports arbitrary ingredient lists and dietary/cuisine text.
+Offline mode selects up to six suggestions from a curated collection of 23 dishes, ranked by your selected ingredients, missing main ingredients, and dish variety. It supports vegetarian, vegan, gluten-free, and dairy-free filters; French, Italian, Asian, and Mediterranean cuisines; the selected time budget, meal occasion (breakfast/brunch/lunch/dinner/snack), and dish type (soup/salad/main dish/appetizer/side dish/sandwich/dessert). You can select multiple meal occasions and dish types: recipes match any selected occasion and any selected dish type. “Any meal” and “Any dish” clear that group’s restrictions. Dietary choices also support multiple selections, and every selected restriction must be satisfied together; “Everything” clears dietary restrictions. Portions scale to your serving count. No match produces a clear message instead of ignoring your preferences. Missing pantry items are still listed, except salt and pepper, which are always available. This is recipe matching, **not AI generation**. Live mode supports arbitrary ingredient lists and dietary/cuisine text.
 
 ## CLI options
 
 ```text
 --ingredients   Comma-separated ingredient names (required except in web mode)
---dietary       Dietary restriction, e.g. vegetarian, vegan, gluten-free
+--dietary       One or more restrictions, e.g. vegetarian gluten-free
 --cuisine       Cuisine preference, e.g. Italian
---meal-type     breakfast, brunch, lunch, dinner, or snack (optional)
---dish-type     soup, salad, "main dish", appetizer, "side dish", sandwich, or dessert
+--meal-type     one or more: breakfast, brunch, lunch, dinner, snack
+--dish-type     one or more: soup, salad, "main dish", appetizer, "side dish", sandwich, dessert
 --max-time      Maximum total preparation + cooking minutes (1–600)
 --servings      Required serving count (1–20; defaults to 2 when omitted)
 --json          Print structured JSON instead of readable text

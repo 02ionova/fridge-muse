@@ -74,13 +74,24 @@ function recipes(data) {
     card.append(summary, body); $('results').append(card);
   });
 }
+function selectedPreferences(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(input => input.value).filter(Boolean);
+}
+for (const name of ['meal-type', 'dish-type', 'dietary']) {
+  const options = [...document.querySelectorAll(`input[name="${name}"]`)];
+  const any = options.find(input => input.value === '');
+  options.forEach(input => input.addEventListener('change', () => {
+    if (input === any && input.checked) options.filter(option => option !== any).forEach(option => {option.checked = false;});
+    any.checked = !options.some(option => option !== any && option.checked);
+  }));
+}
 $('recipe-form').onsubmit = async event => {
   event.preventDefault(); $('error').textContent = '';
   if (!ingredients.length) {$('error').textContent = 'Add at least one ingredient to your fridge.'; return;}
   $('generate').disabled = true; $('results').setAttribute('aria-busy', 'true');
   $('results').replaceChildren(); $('status').textContent = 'Looking for your next favourite meal…';
   try {
-    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, meal_type:document.querySelector('input[name="meal-type"]:checked').value, dish_type:document.querySelector('input[name="dish-type"]:checked').value, dietary:document.querySelector('input[name="dietary"]:checked').value, cuisine:$('cuisine').value, max_time:document.querySelector('input[name="max-time"]:checked').value ? Number(document.querySelector('input[name="max-time"]:checked').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
+    const response = await fetch('/api/recipes', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ingredients, meal_type:selectedPreferences('meal-type'), dish_type:selectedPreferences('dish-type'), dietary:selectedPreferences('dietary'), cuisine:$('cuisine').value, max_time:document.querySelector('input[name="max-time"]:checked').value ? Number(document.querySelector('input[name="max-time"]:checked').value) : null, servings:$('servings').value ? Number($('servings').value) : null})});
     const data = await response.json(); if (!response.ok) throw new Error(data.error || 'Recipe request failed.');
     recipes(data); $('status').textContent = data.mode === 'demo' ? `${data.recipes.length} matching recipes from our ${data.catalog_size}-dish collection — no API needed.` : 'Three fresh possibilities. Pick one and make it yours.';
   } catch (error) {$('error').textContent = error.message; $('status').textContent = 'Adjust your ingredients or constraints and try again.';}

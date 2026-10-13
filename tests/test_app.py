@@ -105,8 +105,22 @@ class RecipeTests(unittest.TestCase):
                 self.assertTrue(result['recipes'])
                 self.assertTrue(all(meal in r['meal_types'] and dish == r['dish_type'] for r in result['recipes']))
 
+    def test_multiple_preferences_match_any_option_in_each_group(self):
+        inputs = app.request_input('apples,sugar,cinnamon,carrots,potatoes,onions,olive oil', meal_type=['lunch', 'snack'], dish_type=['soup', 'dessert'])
+        result = app.generate(inputs, demo=True)
+        self.assertEqual({r['dish_type'] for r in result['recipes']}, {'soup', 'dessert'})
+        self.assertTrue(all(set(inputs['meal_type']).intersection(r['meal_types']) for r in result['recipes']))
+        self.assertTrue(all(r['dish_type'] in inputs['dish_type'] for r in result['recipes']))
+        app.validate_result(result, inputs, expected_count=len(result['recipes']))
+
+    def test_empty_and_duplicate_preferences(self):
+        inputs = app.request_input('tomatoes', meal_type=[], dish_type=['salad', 'salad'])
+        self.assertEqual(inputs['meal_type'], [])
+        self.assertEqual(inputs['dish_type'], ['salad'])
+        self.assertTrue(app.generate(inputs, demo=True)['recipes'])
+
     def test_invalid_preferences_and_ai_mismatches_rejected(self):
-        for kwargs in [{'meal_type': 'midnight feast'}, {'dish_type': 'pizza'}, {'meal_type': []}]:
+        for kwargs in [{'meal_type': 'midnight feast'}, {'dish_type': 'pizza'}, {'meal_type': [123]}]:
             with self.assertRaises(app.RecipeError):
                 app.request_input('tomatoes', **kwargs)
         for kwargs in [{'meal_type': 'breakfast'}, {'dish_type': 'dessert'}]:
@@ -119,11 +133,37 @@ class RecipeTests(unittest.TestCase):
         def opener(request, timeout):
             payload = json.loads(request.data)
             submitted = json.loads(payload['messages'][1]['content'])
-            self.assertEqual(submitted['meal_type'], 'dinner')
-            self.assertEqual(submitted['dish_type'], 'main dish')
+            self.assertEqual(submitted['meal_type'], ['dinner'])
+            self.assertEqual(submitted['dish_type'], ['main dish'])
             return self.response()
         result = app.generate(inputs, opener=opener)
         self.assertEqual(len(result['recipes']), 3)
+
+    def test_combined_dietary_restrictions_are_all_applied(self):
+        inputs = app.request_input('tomatoes,spinach,mushrooms,carrots,potatoes,onions,apples', dietary=['vegetarian', 'gluten-free', 'dairy-free'])
+        result = app.generate(inputs, demo=True)
+        catalog = {r['title']: r for r in json.loads((app.ROOT / 'examples/recipes.json').read_text())['recipes']}
+        self.assertTrue(result['recipes'])
+        for recipe in result['recipes']:
+            self.assertTrue(set(inputs['dietary']).issubset(catalog[recipe['title']]['dietary']))
+
+    def test_dietary_lists_normalize_and_validate(self):
+        self.assertEqual(app.request_input('rice', dietary=' Vegan ')['dietary'], ['vegan'])
+        self.assertEqual(app.request_input('rice', dietary=['Vegan', 'vegan', ''])['dietary'], ['vegan'])
+        self.assertEqual(app.request_input('rice', dietary=[])['dietary'], [])
+        for value in [None, [123], ['x' * 201]]:
+            with self.assertRaises(app.RecipeError):
+                app.request_input('rice', dietary=value)
+
+    @patch.dict(os.environ, {'OPENAI_API_KEY': 'test-key'})
+    def test_ai_receives_all_dietary_preferences(self):
+        inputs = app.request_input('tomatoes,pasta,basil', dietary=['vegetarian', 'dairy-free'])
+        def opener(request, timeout):
+            payload = json.loads(request.data)
+            self.assertEqual(json.loads(payload['messages'][1]['content'])['dietary'], ['vegetarian', 'dairy-free'])
+            self.assertIn('ALL selected dietary restrictions', payload['messages'][0]['content'])
+            return self.response()
+        self.assertEqual(app.generate(inputs, opener=opener)['mode'], 'live')
 
     def test_input_validation(self):
         for kwargs in ({'ingredients': ''}, {'ingredients': ['x'], 'servings': 0}, {'ingredients': ['x'], 'max_time': True}, {'ingredients': [123]}):

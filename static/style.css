@@ -13,3 +13,5 @@
 
 /* Softer lettering and the blue-gray, carrot-orange tones of the banner. */
 h1{font-weight:500;letter-spacing:-2.5px}h1 em{font-weight:600}.brand{font-weight:800;letter-spacing:-1.2px}.fridge-top h2{font-family:'Fraunces',Georgia,serif}.banner-art p{font-family:'Fraunces',Georgia,serif}.choices label>span{border-radius:14px;font-weight:600}.choices input:checked+span{color:#244f61;background:#dfedf1;border-color:#628b9c;box-shadow:inset 0 0 0 1px #628b9c}.preference-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.preference-choices label>span{height:100%;padding:10px 7px}.ingredient.selected{background:var(--blue);border-color:var(--blue)}.generate{box-shadow:0 5px 14px #a8421320}.number{background:#fbe5d1;color:#944314}.empty{background:#eef4f5}.recipe .tag,.eyebrow{color:var(--accent)}@media(max-width:420px){.preference-choices{grid-template-columns:repeat(2,minmax(0,1fr))}h1{letter-spacing:-1.5px}}
+
+.preference-help{font-size:10px;color:var(--muted);margin:0 0 10px}.preference-choices input:checked+span::after{content:'✓';font-size:10px;margin-left:6px}
